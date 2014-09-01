@@ -1,0 +1,35 @@
+<head>
+  <title>peopleList</title>
+</head>
+
+<body>
+  {{> personForm}}
+  {{> personList}}
+</body>
+
+<template name="personForm">
+  <h2>Add a Person</h2>
+  <div class="">
+    <input type="text" id="name" />
+    <button>Add</button>
+  </div>
+</template>
+
+<template name="personList">
+  <h2>People List</h2>
+  <ul>
+    {{#each people}}
+      {{> person}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="person">
+  <li>
+    {{#if editing}}
+      <input type="text" value="{{name}}">
+    {{else}}
+      <span class="name">{{name}}</span>
+    {{/if}}
+  </li>
+</template>

@@ -1,3 +1,11 @@
+## Creating a meteor application
+
+  ```bash
+  meteor create myapp
+  cd myapp
+  meteor
+  ```
+
 ## Structure
 
 - any js in root will be loaded in both server and client
@@ -32,9 +40,12 @@
 - set template values using functions
 - use reactive data store - data store that updates templates whenever data changes
 - Meteor collections are reactive (stored in mongodb)
-- session store is also reactive (simpler than collection, just a key value system
-     Session.set('title', 'Elements of Style');
-     var title = Session.get('title');
+- session store is also reactive (simpler than collection, just a key value system, for example
+
+  ```javascript
+  Session.set('title', 'Elements of Style');
+  var title = Session.get('title');
+  ```
 
 ### Template Events
 
@@ -54,10 +65,73 @@
   });
   ```
 
+In the following template 'editing' is a value available as part of Template in javascript
+
+  ```html
+  <template name="person">
+    <li>
+      {{#if editing}}
+        <input type="text" value="{{name}}">
+      {{else}}
+        <span class="name">{{name}}</span>
+      {{/if}}
+    </li>
+  </template>
+  ```
+
+  ```javascript
+  Template.person.editing = function() {
+    return Session.get('edit-' + this._id);
+  }
+
 ### Template Callbacks
 
 - can provide callback functions to be called when template is created, rendered or destroyed
 - within callback, 'this' is bound to template instance
+
+## Collections
+
+- access to database
+- meteor built on top of mongodb
+- most of syntax for working with meteor collections is extremely similar to mongodb collections
+
+To create a new collection named "people"
+
+  ```javascript
+  var People = new Meteor.Collection('people');
+  ```
+
+When the above code is run on the server, it creates permanent storage in the mongo database.
+On the client, it creates a local version of the collection, which is cached.
+
+To populate a template with ALL documents in a collection:
+
+  ```javascript
+  Template.personList.people = function() {
+    return People.find();
+  }
+  ```
+
+`find()` method on collection returns mongo cursor object, which has useful methods like forEach, map, count, fetch
+
+When `find()` is used in a template, it returns an array of documents (same as calling fetch on cursor)
+
+## Mongo
+
+To connect to local mongo instance used by meteor
+
+  ```bash
+  mongo meteor
+  show dbs
+  use meteor
+  show collections
+  ```
+
+For example, if a meteor app creates a collection named 'people'
+
+  ```
+  db.people.find()
+  ```
 
 ## Unit Testing
 
