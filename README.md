@@ -105,6 +105,7 @@ In the following template 'editing' is a value available as part of Template in 
   Template.person.editing = function() {
     return Session.get('edit-' + this._id);
   }
+  ```
 
 ### Template Callbacks
 
