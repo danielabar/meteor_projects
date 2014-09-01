@@ -1,0 +1,23 @@
+<head>
+  <title>itemsApp</title>
+</head>
+
+<body>
+  {{> name}}
+  {{> items}}
+</body>
+
+<template name="name">
+  <h2>Add item</h2>
+  <input type="text" />
+</template>
+
+<template name="items">
+  <hr>
+  <h2>List items</h2>
+  <ul>
+    {{#each items}}
+      <li>{{name}} | {{category}}</li>
+    {{/each}}
+  </ul>
+</template>

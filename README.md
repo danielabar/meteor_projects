@@ -9,6 +9,9 @@
     - [Template Callbacks](#template-callbacks)
   - [Collections](#collections)
     - [Mongo Shell](#mongo-shell)
+  - [Smart Packages](#smart-packages)
+    - [autopublish](#autopublish)
+  - [Publishing and Subscribing with Collections](#publishing-and-subscribing-with-collections)
   - [Unit Testing](#unit-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -219,6 +222,21 @@ This is similar to gemfile in Ruby or package.json in Node.
 Automatically publishes any changes in collection to all connected clients.
 For a production application, would probably want to remove this, and customize the subscription preferences for clients.
 
+## Publishing and Subscribing with Collections
+
+[Source Code](itemsApp/itemsApp.js)
+
+Remove autopublish package installed by default, and customize the publish and subscribe behaviour.
+
+Server can publish on a channel, for example
+
+  ```javascript
+  if (Meteor.isServer) {
+    Meteor.publish('items', function() {
+      return Items.find();
+    });
+  }
+  ```
 
 ## Unit Testing
 
