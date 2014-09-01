@@ -116,9 +116,9 @@ To populate a template with ALL documents in a collection:
 
 When `find()` is used in a template, it returns an array of documents (same as calling fetch on cursor)
 
-## Mongo
+## Mongo Shell
 
-To connect to local mongo instance used by meteor
+To connect to local mongo instance used by meteor. Meteor application server must be running.
 
   ```bash
   mongo meteor
@@ -131,6 +131,19 @@ For example, if a meteor app creates a collection named 'people'
 
   ```
   db.people.find()
+  ```
+
+Updates to the collection in the mongo shell will be immediately reflected in the client
+
+  ```
+  db.people.insert({name: 'jane smith'})
+  db.people.update({name: 'jane smith'}, { $set: {name: 'jane q smith'}  } )
+  ```
+
+To wipe out all the data and start fresh
+
+  ```
+  meteor reset
   ```
 
 ## Unit Testing
