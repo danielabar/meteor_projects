@@ -1,3 +1,25 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+- [Single Page Web Apps with Meteor](#single-page-web-apps-with-meteor)
+  - [Creating a meteor application](#creating-a-meteor-application)
+  - [Application Structure](#application-structure)
+  - [Basic Templates](#basic-templates)
+    - [Templates, Reactive Data Stores, and Events](#templates-reactive-data-stores-and-events)
+    - [Template Events](#template-events)
+    - [Template Callbacks](#template-callbacks)
+  - [Collections](#collections)
+    - [Mongo Shell](#mongo-shell)
+  - [Unit Testing](#unit-testing)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Single Page Web Apps with Meteor
+
+> Learning Meteor with TutsPlus [course](https://code.tutsplus.com/courses/single-page-web-apps-with-meteor)
+
+[Docs](http://docs.meteor.com/)
+
+
 ## Creating a meteor application
 
   ```bash
@@ -6,7 +28,7 @@
   meteor
   ```
 
-## Structure
+## Application Structure
 
 - any js in root will be loaded in both server and client
 - js in server dir is only loaded on server
@@ -19,7 +41,7 @@
 - public assets go in 'public' dir (images, favicon)
     - NOTE: js and css are NOT considered public assets in meteor
 
-## Templates
+## Basic Templates
 
 - html files will be loaded into the client according to same rules as js and css
 - html files do not have html element (meteor will provide that)
@@ -35,7 +57,7 @@
 - can reference another template from within a template
 - in javascript, can attach functions to templates, then use them in the template with a hash (#)
 
-### Reactive Templates
+### Templates, Reactive Data Stores, and Events
 
 - set template values using functions
 - use reactive data store - data store that updates templates whenever data changes
@@ -116,7 +138,7 @@ To populate a template with ALL documents in a collection:
 
 When `find()` is used in a template, it returns an array of documents (same as calling fetch on cursor)
 
-## Mongo Shell
+### Mongo Shell
 
 To connect to local mongo instance used by meteor. Meteor application server must be running.
 
