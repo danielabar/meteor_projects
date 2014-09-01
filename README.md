@@ -43,6 +43,8 @@
 
 ## Basic Templates
 
+[Example1](book/book.js) | [Example2](people/people.js)
+
 - html files will be loaded into the client according to same rules as js and css
 - html files do not have html element (meteor will provide that)
 - html files do not have links to css or js (meteor provides it)
@@ -114,6 +116,8 @@ In the following template 'editing' is a value available as part of Template in 
 
 ## Collections
 
+[Source Code](peopleList/peopleList.js)
+
 - access to database
 - meteor built on top of mongodb
 - most of syntax for working with meteor collections is extremely similar to mongodb collections
@@ -168,6 +172,53 @@ To wipe out all the data and start fresh
   ```
   meteor reset
   ```
+
+## Smart Packages
+
+[Docs](http://docs.meteor.com/#usingpackages)
+
+Encapsulated functionality that makes working with meoteor easier. Like ruby gems or npm modules.
+
+To get a list of packages used in current project:
+
+  ```bash
+  meteor list
+  ```
+
+By default, the following packages are installed when creating a meteor application
+
+* standard-app-packages
+* autopublish
+* insecure
+
+To remove a package
+
+  ```bash
+  meteor remove autopublish
+  ```
+
+To add a package
+
+  ```bash
+  meteor add autopublish
+  ```
+
+To search for packages
+
+  ```bash
+  meteor search <searchterm>
+  ```
+
+Or [online](http://atmospherejs.com/)
+
+Project package information is kept in a text file `.meteor/packages`
+This is similar to gemfile in Ruby or package.json in Node.
+
+### autopublish
+
+Automatically publishes any changes in collection to all connected clients.
+For a production application, would probably want to remove this, and customize the subscription preferences for clients.
+
 
 ## Unit Testing
 
