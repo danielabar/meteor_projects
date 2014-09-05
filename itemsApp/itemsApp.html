@@ -8,7 +8,7 @@
 </body>
 
 <template name="name">
-  <h2>Add item</h2>
+  <h2>Enter category to filter</h2>
   <input type="text" />
 </template>
 
@@ -19,5 +19,8 @@
     {{#each items}}
       <li>{{name}} | {{category}}</li>
     {{/each}}
+    {{#if nomatch}}
+      <li>No items found</li>
+    {{/if}}
   </ul>
 </template>

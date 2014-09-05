@@ -238,6 +238,25 @@ Server can publish on a channel, for example
   }
   ```
 
+Client can subscribe to this channel and will ONLY see items that server chose to publish
+
+  ```javascript
+  if (Meteor.isClient) {
+    Meteor.subscribe('items');
+    Template.items.items = function() {
+      return Items.find();
+    };
+  }
+  ```
+
+To restrict what client sees, server could choose to only publish certain items, for example, those created by currently logged in user.
+
+To filter data, publish callback can take an argument (or many arguments). Then client must set this argument when subscribing.
+
+Client can also make use of autorun feature, to automatically stop and start subscriptions, if for example, the filter criteria is changing.
+
+Pub/sub is for limiting what client reads. Has nothing to do with writes.
+
 ## Unit Testing
 
 - not built into the framework
