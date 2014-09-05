@@ -257,6 +257,24 @@ Client can also make use of autorun feature, to automatically stop and start sub
 
 Pub/sub is for limiting what client reads. Has nothing to do with writes.
 
+## The Meteor Account System
+
+A group of packages that work together to implement user accounts.
+
+  ```bash
+  meteor add accounts-base
+  meteor add accounts-password
+  meteor add accounts-ui
+  ```
+
+Add login buttons template to body
+
+  ```html
+  <body>
+    {{> loginButtons}}
+  </body>
+  ```
+
 ## Unit Testing
 
 - not built into the framework
