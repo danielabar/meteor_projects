@@ -151,7 +151,7 @@ When `find()` is used in a template, it returns an array of documents (same as c
 To connect to local mongo instance used by meteor. Meteor application server must be running.
 
   ```bash
-  mongo meteor
+  meteor mongo
   show dbs
   use meteor
   show collections
@@ -274,6 +274,51 @@ Add login buttons template to body
     {{> loginButtons}}
   </body>
   ```
+
+Can also login via 3rd party account. To find packages (eg: twitter, facebook)
+
+  ```bash
+  meteor search accounts
+  ```
+
+For example, to provide login via github
+
+  ```bash
+  meteor add accounts-github
+  ```
+
+Now if click 'Sign in' from app, will get a popup with instructions to configure Github login (getting app key, etc).
+
+To only allow 3rd party logins, and not allow user to create account on the system
+
+  ```bash
+  meteor remove accounts-password
+  ```
+
+By default, meteor create account form only has email and password. But it can be customized.
+Also the look and feel of the login can be customized.
+
+To start customizing
+
+  ```bash
+  meteor remove accounts-ui
+  ```
+
+Then in accounts.html, remove `{{> loginButtons}}` and replace with your own template.
+
+Need to handle three different states:
+
+1. User could be logged in -> show user name and logout link
+1. User could be not logged in -> present login form and option to create account
+1. Logging in -> done via ajax, can show a spinner or some type of indicator to let user know login is in progress
+
+Meteor provides variable `currentUser` to represent currently logged in user. Can check for this in templates
+
+  ```html
+  {{#if currentUser}}
+  ```
+
+[HTML](accounts/accounts.html) | [JS](accounts/accounts.js)
 
 ## Unit Testing
 
