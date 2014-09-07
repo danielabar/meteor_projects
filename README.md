@@ -14,16 +14,15 @@
   - [Publishing and Subscribing with Collections](#publishing-and-subscribing-with-collections)
   - [The Meteor Account System](#the-meteor-account-system)
   - [Controlling Database Access](#controlling-database-access)
+  - [Meteor Methods](#meteor-methods)
+  - [The HTTP Smart Package](#the-http-smart-package)
   - [Unit Testing](#unit-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Single Page Web Apps with Meteor
 
-> Learning Meteor with TutsPlus [course](https://code.tutsplus.com/courses/single-page-web-apps-with-meteor)
-
-[Docs](http://docs.meteor.com/)
-
+> Learning Meteor with TutsPlus [course](https://code.tutsplus.com/courses/single-page-web-apps-with-meteor) | [Docs](http://docs.meteor.com/)
 
 ## Creating a meteor application
 
@@ -431,7 +430,15 @@ Calls from client to server can be made synchronously or asynchronously (preferr
 
 Meteor implements Node.js style callbacks, first argument is error, second is result.
 
+## The HTTP Smart Package
+
+[HTML](http-app/http-app.html) | [JS](http-app/http-app.js)
+
+  ```javascript
+  meteor add http
+  ```
+
 ## Unit Testing
 
 - not built into the framework
-- see [laika](http://arunoda.github.io/laika/concepts.html)
+- see [velocity](https://github.com/meteor-velocity/velocity)

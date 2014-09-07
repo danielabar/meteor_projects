@@ -1,0 +1,17 @@
+<head>
+  <title>http-app</title>
+</head>
+
+<body>
+  <h1>HTTP Smart Package</h1>
+  {{> tweetList}}
+</body>
+
+<template name="tweetList">
+  <h1>Latest Refresh: {{latestRefresh}}</h1>
+  <ul>
+    {{#each tweets}}
+      <li><strong>{{user}}</strong> : {{text}} </li>
+    {{/each}}
+  </ul>
+</template>
