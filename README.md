@@ -378,6 +378,59 @@ To update from browser console, must provide id
 
 Can also specify operations not allowed using `deny` method on collection.
 
+## Meteor Methods
+
+[HTML](meteor-methods/meteor-methods.html) | [JS](meteor-methods/meteor-methods.js)
+
+By default, meteor gives clients lots of power, which is useful for rapid prototyping.
+But for real application, don't want all users to have that much power.
+We've lerned how to limit power using custom pub/sub on collections to limit reads, and allow/deny on collections to limit write.
+But there's another way to do this.
+
+Meteor methods are functions that are called on the client, but run on server.
+Allow client to perform operations that require a lot of access, without actually giving the client those permissions.
+
+Given that a method is defined on the server
+
+  ```javascript
+  if (Meteor.isServer) {
+    Meteor.methods({
+      createItem: function (text) {
+        Items.insert({text: text});
+      }
+    });
+  }
+  ```
+
+Then it can be called from the client using `call` or `apply`
+
+  ```javascript
+  Meteor.call('createItem', 'first-item');
+  Meteor.apply('createItem', ['second-item']);
+  ```
+
+Value of `this` in server side methods is the method invocation object. Has some useful methods
+
+  ```javascript
+  this.userId;        // currently logged in user id
+  this.isSimulation;  // see below for explanation
+  ```
+
+`Meteor.methods(...)` declaration can be made outside of `if isServer` and `if isClient` blocks.
+This means methods are created both on the client and the server.
+In this case, client is expected to define a stub method that will run on the client, while the "real" method runs on the server.
+`this.isSimulation` will return true for method running on client code, while real execution is happening on server.
+
+Calls from client to server can be made synchronously or asynchronously (preferred). To call asynchronously from client
+
+  ```javascript
+  Meteor.call('createItem', 'foo-item', function(err, id) {
+    console.log(id)
+  });
+  ```
+
+Meteor implements Node.js style callbacks, first argument is error, second is result.
+
 ## Unit Testing
 
 - not built into the framework

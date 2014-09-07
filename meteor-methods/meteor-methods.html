@@ -1,0 +1,16 @@
+<head>
+  <title>meteor-methods</title>
+</head>
+
+<body>
+  <h1>Meteor Methods</h1>
+  {{> list}}
+</body>
+
+<template name="list">
+  <ul>
+    {{#each items}}
+      <li>{{text}}</li>
+    {{/each}}
+  </ul>
+</template>
