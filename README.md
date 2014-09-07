@@ -12,6 +12,8 @@
   - [Smart Packages](#smart-packages)
     - [autopublish](#autopublish)
   - [Publishing and Subscribing with Collections](#publishing-and-subscribing-with-collections)
+  - [The Meteor Account System](#the-meteor-account-system)
+  - [Controlling Database Access](#controlling-database-access)
   - [Unit Testing](#unit-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -319,6 +321,60 @@ Meteor provides variable `currentUser` to represent currently logged in user. Ca
   ```
 
 [HTML](accounts/accounts.html) | [JS](accounts/accounts.js)
+
+## Controlling Database Access
+
+[HTML](limiting-write/limiting-write.html) | [JS](limiting-write/limiting-write.js)
+
+Limiting client write access to collections.
+By default, the `insecure` package is installed, and allows ALL write access to ALL clients.
+By removing it, we now have to explicitly specify what write access is allowed.
+Write access will be based on currently logged in user.
+
+  ```bash
+  meteor remove insecure
+  meteor add accounts-base
+  meteor add accounts-ui
+  meteor add accounts-password
+  meteor add underscore
+  ```
+
+In the browser console, can get the currently logged in user by running
+
+  ```javascript
+  Meteor.user();
+  Meteor.userId();
+  ```
+
+Use collections' allowed and denied methods, for example
+
+  ```javascript
+  // Returning true from any of the operations means that method is allowed
+  Items.allow({
+    // Make sure there is a logged in user AND that they are the owner of the document
+    insert: function(userid, doc) {
+      return (userid && doc.owner === userid);
+    },
+    update: function() {
+
+    },
+    remove: function() {
+
+    }
+  });
+  ```
+
+In browser console, can now write to the `Items` collection
+
+  ```javascript
+  Items.insert({name:'two', owner: Meteor.userId()})
+  ```
+
+To update from browser console, must provide id
+
+  ```javascript
+  Items.update({_id:'NkCzcdifAac4vDwMu'}, {$set: {price: '$10.00'}})
+  ```
 
 ## Unit Testing
 
