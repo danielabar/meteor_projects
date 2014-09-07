@@ -376,6 +376,8 @@ To update from browser console, must provide id
   Items.update({_id:'NkCzcdifAac4vDwMu'}, {$set: {price: '$10.00'}})
   ```
 
+Can also specify operations not allowed using `deny` method on collection.
+
 ## Unit Testing
 
 - not built into the framework
