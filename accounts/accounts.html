@@ -30,6 +30,7 @@
   <input type="text" id="username" placeholder="username">
   <input type="password" id="password" placeholder="password">
   <button id="createaccount">Create</button>
+  {{> errorTemplate}}
   <p id="loginform">(Login)</p>
 </template>
 
@@ -37,5 +38,10 @@
   <input type="text" id="username" placeholder="username">
   <input type="password" id="password" placeholder="password">
   <button id="login">Log In</button>
+  {{> errorTemplate}}
   <p id="accountform">(Create Account)</p>
+</template>
+
+<template name="errorTemplate">
+  <p id="errorMessage">{{message}}</p>
 </template>

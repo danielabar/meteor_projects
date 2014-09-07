@@ -12,6 +12,7 @@ if (Meteor.isClient) {
     },
     'click #accountform': function() {
       Session.set('creatingAccount', true);
+      delete Session.keys['errorMessage']
     },
     'click #createaccount': function(e, t) {
       Session.set('creatingAccount', false);
@@ -32,10 +33,14 @@ if (Meteor.isClient) {
       Meteor.loginWithPassword(
         t.find('#username').value, t.find('#password').value,
         function(error) {
-          console.dir(error);
+          Session.set('errorMessage', error.message);
         }
       );
     }
   });
+
+  Template.errorTemplate.message = function() {
+    return Session.get('errorMessage');
+  }
 
 }

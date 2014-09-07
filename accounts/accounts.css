@@ -1,1 +1,9 @@
-/* CSS declarations go here */
+/*
+*******************************
+* Error
+*******************************
+*/
+
+#errorMessage {
+  color: red;
+}
