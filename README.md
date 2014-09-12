@@ -438,6 +438,12 @@ Meteor implements Node.js style callbacks, first argument is error, second is re
   meteor add http
   ```
 
+Make http call from server:
+
+  ```javascript
+  Meteor.http.call('GET', 'http://content.guardianapis.com/search?show-fields=all', {parans: {q: searchTerm}});
+  ```
+
 ## Unit Testing
 
 - not built into the framework

@@ -11,14 +11,14 @@ if (Meteor.isClient) {
       var d = new Date();
       Session.set('latestRefresh', '' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
     });
-  }, 3000);
+  }, 10000);
 }
 
 if (Meteor.isServer) {
   Meteor.methods({
     getTweets: function (searchTerm) {
       // synchronous example
-      var response = Meteor.http.call('GET', 'http://content.guardianapis.com/search?show-fields=all', {q: searchTerm});
+      var response = Meteor.http.call('GET', 'http://content.guardianapis.com/search?show-fields=all', {parans: {q: searchTerm}});
       return response.data.response.results.map(function(tweet) {
         return {
           user: tweet.byline,
