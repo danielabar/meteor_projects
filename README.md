@@ -1,5 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
 - [Single Page Web Apps with Meteor](#single-page-web-apps-with-meteor)
   - [Creating a meteor application](#creating-a-meteor-application)
   - [Application Structure](#application-structure)
@@ -16,6 +18,7 @@
   - [Controlling Database Access](#controlling-database-access)
   - [Meteor Methods](#meteor-methods)
   - [The HTTP Smart Package](#the-http-smart-package)
+  - [Sending Email](#sending-email)
   - [Unit Testing](#unit-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -443,6 +446,44 @@ Make http call from server:
   ```javascript
   Meteor.http.call('GET', 'http://content.guardianapis.com/search?show-fields=all', {parans: {q: searchTerm}});
   ```
+
+## Sending Email
+
+  ```bash
+  meteor add email
+  ```
+
+Then sending email from Meteor server side code is as simple as calling `Email.send(obj)`.
+The only required field is `from`
+
+  ```javascript
+  Email.send({
+    from: 'admin@localhost.com',
+    to: to,
+    // cc, bcc, replyTo
+    subject: subject,
+    text: text,
+    // html
+  });
+  ```
+
+Need to have an SMTP server setup for email to actually be sent (Meteor does not come with this).
+If no SMTP server is present, `Email.send` will still run, and output the email to the console.
+
+To send email with an SMTP server configured, start Meteor with `MAIL_URL` variable set:
+
+  ```bash
+  MAIL_URL = "smtp://USERNAME:PASSWORD@HOST:PORT" meteor
+  ```
+
+### Using Gmail as SMTP Server
+
+| Variable      | Replacement   |
+| ------------- | ------------- |
+| USERNAME      | Gmail username (excluding "@gmail.com")  |
+| PASSWORD      | Gmail password  |
+| HOST          | smtp.gmail.com  |
+| PORT          | 587             |
 
 ## Unit Testing
 

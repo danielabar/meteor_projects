@@ -1,0 +1,15 @@
+<head>
+  <title>simple-email</title>
+</head>
+
+<body>
+  <h1>Sending Email with Meteor</h1>
+  {{> emailForm}}
+</body>
+
+<template name="emailForm">
+  <input type="email" id="to" name="to" placeholder="to"/><br>
+  <input type="text" id="subject" name="subject" placeholder="subject"><br>
+  <textarea name="text" id="text" cols="30" rows="10"></textarea><br>
+  <button>send</button>
+</template>
