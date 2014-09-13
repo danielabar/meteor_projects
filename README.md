@@ -25,7 +25,8 @@
       - [Deploy Flags](#deploy-flags)
       - [View Logs](#view-logs)
       - [Custom Domain](#custom-domain)
-    - [Other Server](#other-server)
+    - [Custom Server](#custom-server)
+  - [Preprocessed Languages](#preprocessed-languages)
   - [Unit Testing](#unit-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -543,6 +544,20 @@ Then upload the bundled file `myapp.tar.gz` to the server where it will be deplo
   ```
 
 The generated bundle/README contains instructions for what to install, environment variables to set, and how to start the app.
+
+## Preprocessed Languages
+
+[Coffee](preproc/preproc.coffee) | [LESS](preproc/preproc.less)
+
+By default, meteor apps are written in vanilla HTML and CSS.
+But it's possible to also use pre-processed languages such as CoffeeScript and LESS with smart packages.
+
+  ```bash
+  meteor add coffeescript
+  meteor add less
+  ```
+
+Now any .coffee files will automatically be converted to javascript.
 
 ## Unit Testing
 
