@@ -19,6 +19,13 @@
   - [Meteor Methods](#meteor-methods)
   - [The HTTP Smart Package](#the-http-smart-package)
   - [Sending Email](#sending-email)
+    - [Using Gmail as SMTP Server](#using-gmail-as-smtp-server)
+  - [Deploying Meteor Applications](#deploying-meteor-applications)
+    - [Free Meteor Hosting](#free-meteor-hosting)
+      - [Deploy Flags](#deploy-flags)
+      - [View Logs](#view-logs)
+      - [Custom Domain](#custom-domain)
+    - [Other Server](#other-server)
   - [Unit Testing](#unit-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -484,6 +491,58 @@ To send email with an SMTP server configured, start Meteor with `MAIL_URL` varia
 | PASSWORD      | Gmail password  |
 | HOST          | smtp.gmail.com  |
 | PORT          | 587             |
+
+## Deploying Meteor Applications
+
+### Free Meteor Hosting
+
+Easiest way to deploy is to use Metero's free hosting service.
+
+  ```bash
+  meteor deploy myapp
+  ```
+
+Site is now deployed and available at [http://myapp.meteor.com](http://myapp.meteor.com)
+To redeploy, run the same command again.
+
+#### Deploy Flags
+
+<dl>
+  <dt>-P</dt>
+  <dd>Specify a password to be used for all future deploys of this app</dd>
+
+  <dt>-D</dt>
+  <dd>Deletes the application</dd>
+</dl>
+
+#### View Logs
+
+  ```bash
+  meteor logs myapp
+  ```
+
+#### Custom Domain
+
+Set your domain as a CNAME to url origin.meteor.com ???
+
+### Custom Server
+
+Meteor is just a node application, so it can be deployed on any server that can host node applications.
+
+First bundle the application to be deployed
+
+  ```bash
+  cd myapp
+  meteor bundle myapp.tar.gz
+  ```
+
+Then upload the bundled file `myapp.tar.gz` to the server where it will be deployed, and unpack it
+
+  ```bash
+  tar xzf myapp.tar.gz
+  ```
+
+The generated bundle/README contains instructions for what to install, environment variables to set, and how to start the app.
 
 ## Unit Testing
 
