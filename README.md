@@ -559,6 +559,19 @@ But it's possible to also use pre-processed languages such as CoffeeScript and L
 
 Now any .coffee files will automatically be converted to javascript.
 
+## Meteor with Backbone
+
+By default, meteor doesn't do anything with urls, every view is always at the root.
+
+To have deep links, need to work with a router, for example, Backbone's router.
+
+For this exercise
+
+  ```bash
+  meteor remove autopublish insecure
+  meteor add accounts-base accounts-ui accounts-password backbone coffeescript
+  ```
+
 ## Unit Testing
 
 - not built into the framework
