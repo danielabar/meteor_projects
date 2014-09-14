@@ -32,11 +32,13 @@
 </template>
 
 <template name="posts">
-  <div class="posts">
-    {{#each posts}}
-      {{> post}}
-    {{/each}}
-  </div>
+  {{#if show}}
+    <div class="posts">
+      {{#each posts}}
+        {{> post}}
+      {{/each}}
+    </div>
+  {{/if}}
 </template>
 
 <template name="post">
